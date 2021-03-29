@@ -1,11 +1,14 @@
 {
+  "homepage": "https://github.com/biancasehn/final-proj-ztm-frontend.git",
   "name": "final-proj-ztm",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "predeploy" : "yarn run build",
+    "deploy": "gh-pages -d build -b master"
   },
   "dependencies": {
     "clarifai": "^2.9.1",
