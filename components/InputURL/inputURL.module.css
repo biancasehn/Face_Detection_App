@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    padding: 2em;
+    margin-top: 2em;
+    box-shadow: 4px 4px 4px -4px rgba(0,0,0,.3);
+    background: rgba(93, 203, 247, 0.2);
+}
+
+@media (max-width: 550px) {
+    .container {
+        padding: .8em;
+    }
+}
+
+.input {
+    width: 40vw;
+    border-radius: 10px;
+    border: 1px solid pink;
+    padding: 10px;
+    box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
+    margin-right: 3px;
+}
+
+.input:active {
+    border: none;
+}
+

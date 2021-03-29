@@ -1,0 +1,55 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.warning {
+  color: red;
+  display: flex;
+  max-width: inherit;
+  font-size: .8em;
+}
+
+button {
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgb(204, 203, 203);
+  padding: 10px;
+
+  box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
+  background: rgb(247, 198, 206);
+
+  cursor: pointer;
+}
+
+p.button {
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgb(204, 203, 203);
+  padding: 10px;
+  
+  box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
+  background: rgb(247, 198, 206);
+
+  cursor: pointer;
+}
+
+:root {
+  --nav: pink;
+  --button: rgb(247, 198, 206);
+  --blueDetail: rgba(93, 203, 247, 0.2);
+  --darkText: #212529;
+}
