@@ -3,17 +3,55 @@ import React, { useEffect, useState } from 'react';
 import InputURL from '../InputURL/InputURL';
 import FaceRecognition from '../FaceRecognition/FaceRecognition';
 import EntriesCount from '../EntriesCount/EntriesCount';
+import styles from './home.module.css'
+import { useSession } from 'next-auth/client'
 
-export default function Home({ userSignedIn }) {
+export default function Home() {
+
+  const [ session ] = useSession()
 
   const [url, setUrl] = useState('')
   const [pic, setPic] = useState('')
   const [box, setBox] = useState ('')
-  const [userEntries, setUserEntries] = useState('')
+  const [entries, setEntries] = useState(0)
+  const [displayModal, setDisplayModal] = useState(false)
+
+  const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
+  // const fetchUrl = "http://localhost:3001"
 
   useEffect(() => {
-    setUserEntries(userSignedIn.entries)
-  },[userSignedIn.entries])
+    (session) &&
+    fetch(`${fetchUrl}/`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: session.accessToken.id
+      })
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(entries => {
+      setEntries(entries);
+    })
+  }, [session])
+
+  function fetchEntries() {
+    fetch(`${fetchUrl}/image`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: session.accessToken.id
+      })
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(count => {
+      setEntries(count[0]);
+    })
+    return
+  }
 
   const boxCalculation = (response) => {
     const output = [];
@@ -46,7 +84,8 @@ export default function Home({ userSignedIn }) {
   const handlePictureSubmit = (event) => {
       event.preventDefault();
       setPic(url);
-      fetch('https://desolate-thicket-19650.herokuapp.com/imageurl', {
+      // handle Clarifai API Call
+      fetch(`${fetchUrl}/imageurl`, {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -54,34 +93,36 @@ export default function Home({ userSignedIn }) {
         })
       })
       .then(response => response.json())
-      .then(response => {
-        if (response) {
-          fetch('https://desolate-thicket-19650.herokuapp.com/image', {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              id: userSignedIn.id
-            })
-          })
-          .then(response => response.json())
-          .then(count => {
-            setUserEntries(count);
-          })
-          .catch(console.log);
+      .then(boxData => {
+        if (session) {
+          if (boxData) {
+            fetchEntries()
+          }
+        } else {
+          setDisplayModal(true)
         }
-        displayBox(boxCalculation(response))
+        displayBox(boxCalculation(boxData))
       })
       .catch(err => console.log("erro"))
   }
-
   return (
-    <div >
-      <div style={{marginTop:"5em"}}>
-        <EntriesCount userName={userSignedIn.name} entries={userEntries} />
+    <div className={styles.main}>
+      {/* {(displayModal) ? 
+        <div className={styles.modal}>
+          <p>Log in to your account and keep track of your entries!</p>
+        </div>
+        : null
+      } */}
+      <div>
+        { (session) ?
+        <EntriesCount userName={session.accessToken.name}
+                      entries={entries} />
+        : <div></div>
+        }
         <h1>Let's detect faces in your pictures!</h1>
       </div>
       <InputURL onChange={onFormChange} onSubmit={handlePictureSubmit} />
-      <FaceRecognition pic={pic} box={box} />         
+      <FaceRecognition pic={pic} box={box} />
     </div>
   )
 }

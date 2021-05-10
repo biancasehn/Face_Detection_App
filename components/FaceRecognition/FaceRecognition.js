@@ -6,8 +6,8 @@ export default function FaceRecognition({pic, box}) {
             <div />)
     } else {
             return(
-                <div style={{display:"flex", justifyContent:"center"}}>
-                    <div className={styles.container}>
+                <div className={styles.container}>
+                    <div className={styles.main}>
                         <img id='inputimage'
                             src={pic}
                             alt="face"

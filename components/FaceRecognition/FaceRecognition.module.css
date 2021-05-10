@@ -1,4 +1,9 @@
 .container {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
     position: relative;
     margin-top: 5px;
     width: 500px;
