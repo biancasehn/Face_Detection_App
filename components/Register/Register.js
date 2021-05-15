@@ -13,8 +13,8 @@ export default function Register(props) {
 
     const router = useRouter()
 
-    const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
-    // const fetchUrl = "http://localhost:3001"
+    // const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
+    const fetchUrl = "http://localhost:3001"
 
     const onSubmitRegister = (e) => {
         e.preventDefault();
@@ -38,7 +38,6 @@ export default function Register(props) {
         })
         .then(data => {
             if (data) {
-                console.log(data)
                 signIn("credentials", {
                     email,
                     password,

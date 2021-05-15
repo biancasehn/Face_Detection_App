@@ -16,7 +16,7 @@ export default NextAuth({
       },
 
       async authorize(credentials) {
-        const user = await fetch(`https://desolate-thicket-19650.herokuapp.com/signin`, {
+        const user = await fetch(`http://localhost:3001/signin`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -30,12 +30,11 @@ export default NextAuth({
           }
         })
         .catch(err => {console.log("erro", err)})
-
+        
         if (user) {
           return user
         } else {
           return null
-          // throw Error("User not found")
         }
       },
     })
@@ -73,5 +72,5 @@ export default NextAuth({
   },
 
   // A database is optional, but required to persist accounts in a database
-  database:  'postgres://pg:admin@127.0.0.1:5432/smartbrain',
+  database:  process.env.DB,
 })

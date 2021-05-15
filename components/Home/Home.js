@@ -16,8 +16,8 @@ export default function Home() {
   const [entries, setEntries] = useState(0)
   const [displayModal, setDisplayModal] = useState(false)
 
-  const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
-  // const fetchUrl = "http://localhost:3001"
+  // const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
+  const fetchUrl = "http://localhost:3001"
 
   useEffect(() => {
     (session) &&
@@ -107,12 +107,14 @@ export default function Home() {
   }
   return (
     <div className={styles.main}>
-      {/* {(displayModal) ? 
+      { (displayModal) ? 
         <div className={styles.modal}>
-          <p>Log in to your account and keep track of your entries!</p>
+          <div className={styles.animateLeft}>
+            Sign in to keep track of your entries!
+          </div>
         </div>
-        : null
-      } */}
+        : <div />
+      }
       <div>
         { (session) ?
         <EntriesCount userName={session.accessToken.name}
@@ -123,6 +125,7 @@ export default function Home() {
       </div>
       <InputURL onChange={onFormChange} onSubmit={handlePictureSubmit} />
       <FaceRecognition pic={pic} box={box} />
+      <br />
     </div>
   )
 }

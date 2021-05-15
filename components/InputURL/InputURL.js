@@ -3,8 +3,8 @@ import styles from './inputURL.module.css'
 export default function InputURL({ onChange, onSubmit }) {
 
     return(
-        <div className={styles.container}>
-            <form onSubmit={onSubmit}>
+        <div>
+            <form onSubmit={onSubmit} className={styles.container}>
                 <input
                 type="text"
                 placeholder="Enter the URL"

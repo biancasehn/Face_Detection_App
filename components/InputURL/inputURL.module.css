@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    justify-content: space-around;
     padding: 2em;
     margin-top: 2em;
     box-shadow: 4px 4px 4px -4px rgba(0,0,0,.3);
@@ -13,7 +14,7 @@
 }
 
 .input {
-    width: 40vw;
+    width: 80%;
     border-radius: 10px;
     border: 1px solid pink;
     padding: 10px;
