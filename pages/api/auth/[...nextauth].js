@@ -16,7 +16,7 @@ export default NextAuth({
       },
 
       async authorize(credentials) {
-        const user = await fetch(`http://localhost:3001/signin`, {
+        const user = await fetch(`${process.env.FETCHURL}/signin`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -30,7 +30,6 @@ export default NextAuth({
           }
         })
         .catch(err => {console.log("erro", err)})
-        
         if (user) {
           return user
         } else {
@@ -72,5 +71,5 @@ export default NextAuth({
   },
 
   // A database is optional, but required to persist accounts in a database
-  database:  process.env.DB,
+  database: process.env.DB,
 })

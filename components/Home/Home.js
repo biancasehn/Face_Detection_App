@@ -16,9 +16,8 @@ export default function Home() {
   const [entries, setEntries] = useState(0)
   const [displayModal, setDisplayModal] = useState(false)
 
-  // const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
-  const fetchUrl = "http://localhost:3001"
-
+  const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
+  // const fetchUrl = "http://localhost:3001"
   useEffect(() => {
     (session) &&
     fetch(`${fetchUrl}/`, {
@@ -34,6 +33,7 @@ export default function Home() {
     .then(entries => {
       setEntries(entries);
     })
+    .catch(err => console.log("Failed to fetch", err))
   }, [session])
 
   function fetchEntries() {

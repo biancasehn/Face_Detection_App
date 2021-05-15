@@ -14,7 +14,7 @@ export default function App() {
 
         <Nav />
 
-        <Home/>
+        <Home />
       </div>
   )
 }

@@ -1,7 +1,7 @@
 import styles from './Nav.module.css';
 import Logo from '../Logo/Logo';
 import Link from 'next/link'
-import { useSession, signOut, signIn } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/client'
 import { useRouter } from 'next/router'
 
 export default function Nav() {
@@ -15,7 +15,7 @@ export default function Nav() {
                 
                 { router.pathname === '/' ?
                     session ? 
-                    <a onClick={() => signOut({ callbackUrl: 'http://localhost:3000/signin' })}>Sign Out</a>
+                    <a onClick={() => signOut({ callbackUrl: 'final-proj-ztm-frontend.vercel.app/signin' })}>Sign Out</a>
                     : <Link href="/signin" > Sign in </Link>
                     :
                     <Link href='/'>Home</Link>

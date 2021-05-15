@@ -14,12 +14,11 @@ export default function Register(props) {
     const router = useRouter()
 
     // const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
-    const fetchUrl = "http://localhost:3001"
 
     const onSubmitRegister = (e) => {
         e.preventDefault();
         
-        fetch(`${fetchUrl}/register`, {
+        fetch(`${process.env.FETCHURL}/register`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

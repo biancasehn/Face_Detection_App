@@ -16,7 +16,7 @@ export default function FaceRecognition({pic, box}) {
                         />           
                         {box 
                         ? box.map(face => (
-                            <div
+                            <div key={face}
                             className={styles.box}
                             style={{
                                 top: face.top_row, 
