@@ -71,5 +71,5 @@ export default NextAuth({
   },
 
   // A database is optional, but required to persist accounts in a database
-  database: process.env.DB,
+  database: "https://desolate-thicket-19650.herokuapp.com",
 })
