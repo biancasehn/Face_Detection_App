@@ -5,20 +5,18 @@ import Link from 'next/link'
 
 import styles from '../Signin/Signin.module.css';
 
-export default function Register(props) {
+export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [validRegister, setValidRegister] = useState(true);
 
-    const router = useRouter()
-
-    // const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
+    const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
 
     const onSubmitRegister = (e) => {
         e.preventDefault();
         
-        fetch(`${process.env.FETCHURL}/register`, {
+        fetch(`${fetchUrl}/register`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
