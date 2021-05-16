@@ -16,7 +16,7 @@ export default NextAuth({
       },
 
       async authorize(credentials) {
-        const user = await fetch(`$https://desolate-thicket-19650.herokuapp.com/signin`, {
+        const user = await fetch(`https://desolate-thicket-19650.herokuapp.com/signin`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
