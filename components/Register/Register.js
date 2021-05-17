@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router'
+import React, { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/client';
 import Link from 'next/link'
 
