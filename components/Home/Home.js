@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 
-import InputURL from '../InputURL/InputURL';
+import Input from '../Input/Input';
 import FaceRecognition from '../FaceRecognition/FaceRecognition';
 import EntriesCount from '../EntriesCount/EntriesCount';
 
@@ -78,12 +78,29 @@ export default function Home() {
     }
     
   const onFormChange = (event) => {
-    setUrl(event.target.value)
+    (box) && setBox('')
+
+    const input = event.target
+    console.log("event.target.value",event.target.value)
+    if (input.type === "file") {
+      var file = event.target.files[0];
+      var reader = new FileReader();
+  
+      reader.onloadend = function(e) {
+        setPic(e.target.result)
+        const b64Clarifai = e.target.result.replace(/^data:image\/(.*);base64,/, '')
+        setUrl(b64Clarifai)
+      };
+      reader.readAsDataURL(file);
+
+    } else {
+      setUrl(input.value)
+      setPic(input.value)
+    }
   }
 
   const handlePictureSubmit = (event) => {
-      event.preventDefault();
-      setPic(url);
+      (event) && event.preventDefault();
       // handle Clarifai API Call
       fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/imageurl`, {
         method: 'post',
@@ -92,7 +109,12 @@ export default function Home() {
           input: url
         })
       })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 300) {
+          setUrl('')
+          return response.json()
+        }
+      })
       .then(boxData => {
         if (session) {
           if (boxData) {
@@ -101,6 +123,7 @@ export default function Home() {
         } else {
           setDisplayModal(true)
         }
+
         displayBox(boxCalculation(boxData))
       })
       .catch(err => console.log("erro"))
@@ -123,7 +146,7 @@ export default function Home() {
         }
         <div className={styles.callToAction}><h1>Let's detect faces in your pictures!</h1></div>
       </div>
-      <InputURL onChange={onFormChange} onSubmit={handlePictureSubmit} />
+      <Input onChange={onFormChange} onSubmit={handlePictureSubmit} />
       <FaceRecognition pic={pic} box={box} />
       <br />
     </div>

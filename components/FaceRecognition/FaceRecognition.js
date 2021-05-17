@@ -1,10 +1,11 @@
 import styles from './FaceRecognition.module.css'
 
 export default function FaceRecognition({pic, box}) {
-    if (pic == '') {
-        return(
-            <div />)
-    } else {
+    if ((pic == '') || ((pic.slice(-4) !== ".jpg") && (pic.substring(0,15) !== "data:image/jpeg"))) {
+        return (
+            <div />
+        )
+        } else {
             return(
                 <div className={styles.container}>
                     <div className={styles.main}>
