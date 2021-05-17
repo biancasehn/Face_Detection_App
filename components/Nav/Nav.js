@@ -15,7 +15,7 @@ export default function Nav() {
                 
                 { router.pathname === '/' ?
                     session ? 
-                    <a onClick={() => signOut({ callbackUrl: 'final-proj-ztm-frontend.vercel.app/signin' })}>Sign Out</a>
+                    <a onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/signin` })}>Sign Out</a>
                     : <Link href="/signin" > Sign in </Link>
                     :
                     <Link href='/'>Home</Link>

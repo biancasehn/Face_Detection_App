@@ -10,10 +10,6 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [validRegister, setValidRegister] = useState(true);
 
-    useEffect(() => {
-        console.log("NEXT_PUBLIC_FETCHURL",process.env.NEXT_PUBLIC_FETCHURL)
-    }, [])
-
     const onSubmitRegister = (e) => {
         e.preventDefault();
         
