@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React from 'react';
 
 import Nav from '../components/Nav/Nav.js';
@@ -7,7 +8,10 @@ export default function signin() {
      
     return(
         <div>
-            <Nav isSignedIn="Home" href="/" />
+            <Head>
+                <title>Face Recognition App</title>
+            </Head>
+            <Nav />
             <Signin />
         </div>
     )

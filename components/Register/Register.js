@@ -11,12 +11,10 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [validRegister, setValidRegister] = useState(true);
 
-    const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
-
     const onSubmitRegister = (e) => {
         e.preventDefault();
         
-        fetch(`${fetchUrl}/register`, {
+        fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/register`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -86,7 +84,7 @@ export default function Register() {
                         type="password" name="password" placeholder="Enter password" 
                         style={{padding: ".3em"}}/>
                 </div>
-                    <button className="button" type="submit">Submit</button>
+                    <button className="button" type="submit">Submit</button> <br/>
                     <Link href='/signin'><p style={{marginTop:"0.1em", cursor:"pointer"}}>Already subscribed? Sign In</p></Link>
                 
             </form>

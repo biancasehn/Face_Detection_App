@@ -11,9 +11,7 @@ export default function App() {
         <Head>
           <title>Face Recognition App</title>
         </Head>
-
         <Nav />
-
         <Home />
       </div>
   )

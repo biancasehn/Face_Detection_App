@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link'
 
 import InputURL from '../InputURL/InputURL';
 import FaceRecognition from '../FaceRecognition/FaceRecognition';
 import EntriesCount from '../EntriesCount/EntriesCount';
+
 import styles from './home.module.css'
 import { useSession } from 'next-auth/client'
 
@@ -16,11 +18,9 @@ export default function Home() {
   const [entries, setEntries] = useState(0)
   const [displayModal, setDisplayModal] = useState(false)
 
-  const fetchUrl = "https://desolate-thicket-19650.herokuapp.com"
-  // const fetchUrl = "http://localhost:3001"
   useEffect(() => {
     (session) &&
-    fetch(`${fetchUrl}/`, {
+    fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -37,7 +37,7 @@ export default function Home() {
   }, [session])
 
   function fetchEntries() {
-    fetch(`${fetchUrl}/image`, {
+    fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/image`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -85,7 +85,7 @@ export default function Home() {
       event.preventDefault();
       setPic(url);
       // handle Clarifai API Call
-      fetch(`${fetchUrl}/imageurl`, {
+      fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/imageurl`, {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -109,9 +109,9 @@ export default function Home() {
     <div className={styles.main}>
       { (displayModal) ? 
         <div className={styles.modal}>
-          <div className={styles.animateLeft}>
+          <Link href={"/signin"}><div className={styles.animateLeft}>
             Sign in to keep track of your entries!
-          </div>
+          </div></Link>
         </div>
         : <div />
       }
@@ -121,7 +121,7 @@ export default function Home() {
                       entries={entries} />
         : <div></div>
         }
-        <h1>Let's detect faces in your pictures!</h1>
+        <div className={styles.callToAction}><h1>Let's detect faces in your pictures!</h1></div>
       </div>
       <InputURL onChange={onFormChange} onSubmit={handlePictureSubmit} />
       <FaceRecognition pic={pic} box={box} />

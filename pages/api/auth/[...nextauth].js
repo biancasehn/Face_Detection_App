@@ -16,7 +16,7 @@ export default NextAuth({
       },
 
       async authorize(credentials) {
-        const user = await fetch(`https://desolate-thicket-19650.herokuapp.com/signin`, {
+        const user = await fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/signin`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -39,28 +39,15 @@ export default NextAuth({
     })
   ],
 
-  session: { 
-      jwt: true,
-    },
-
-  jwt: {
-      secret: process.env.JWT_SECRET,
-  },
-
   pages: {
-    signin: "/signin",
-    register: "/register",
     error:"/signin"
   },
 
   callbacks: {
-
     async session(session, token) {
-
       session.accessToken = token.accessToken
       return session
     },
-    
     async jwt(token, user) {
         if (user) {
           token.accessToken = {... user}
@@ -70,6 +57,6 @@ export default NextAuth({
       }
   },
 
-  // A database is optional, but required to persist accounts in a database
-  database: "https://desolate-thicket-19650.herokuapp.com",
+  // // A database is optional, but required to persist accounts in a database
+  // database: 
 })

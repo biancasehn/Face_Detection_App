@@ -55,7 +55,7 @@ export default function Signin() {
                     </div>
                 </div>
                 
-                <button className="button" type="submit"> Submit</button>
+                <button className="button" type="submit"> Submit</button><br/>
                 <Link href='/register'><p style={{marginTop:"0.1em", cursor:"pointer"}}> Or register </p></Link>
             </form>
         </div>
