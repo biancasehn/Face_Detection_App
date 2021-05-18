@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    min-width: min(500px, 90vw);
     padding: .8em;
     margin-top: 1em;
     box-shadow: 4px 4px 4px -4px rgba(0,0,0,.3);

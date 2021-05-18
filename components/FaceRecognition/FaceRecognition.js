@@ -12,7 +12,7 @@ export default function FaceRecognition({pic, box}) {
                         <img id='inputimage'
                             src={pic}
                             alt="face"
-                            width={"500px"}
+                            className={styles.img}
                         />           
                         {box 
                         ? box.map(face => (

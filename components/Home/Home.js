@@ -16,7 +16,9 @@ export default function Home() {
   const [pic, setPic] = useState('')
   const [box, setBox] = useState ('')
   const [entries, setEntries] = useState(0)
-  const [displayModal, setDisplayModal] = useState(false)
+  const [displaySignInModal, setDisplaySignInModal] = useState(false)
+  const [displayErrorModal, setDisplayErrorModal] = useState(false)
+
 
   useEffect(() => {
     (session) &&
@@ -115,28 +117,34 @@ export default function Home() {
         }
       })
       .then(boxData => {
-        if (session) {
-          if (boxData) {
-            fetchEntries()
-          }
+        if (boxData.outputs[0].data.regions) {
+          (session) && fetchEntries()
+          displayBox(boxCalculation(boxData))
+          setDisplaySignInModal(true)
         } else {
-          setDisplayModal(true)
+          setDisplayErrorModal(true)
         }
-
-        displayBox(boxCalculation(boxData))
       })
       .catch(err => console.log("erro"))
   }
   return (
     <div className={styles.main}>
-      { (displayModal) ? 
-        <div className={styles.modal}>
+      { (displaySignInModal) ? 
+        <div className={styles.signInModal}>
           <Link href={"/signin"}><div className={styles.animateLeft}>
             Sign in to keep track of your entries!
           </div></Link>
         </div>
         : <div />
       }
+
+      { (displayErrorModal) ? 
+        <div className={styles.errorModal}>
+          <p className={styles.animateLeft}>No faces detected :(</p>
+        </div>
+        : <div />
+      }
+
       <div>
         { (session) ?
         <EntriesCount userName={session.accessToken.name}
