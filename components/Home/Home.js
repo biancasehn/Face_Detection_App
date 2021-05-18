@@ -81,6 +81,8 @@ export default function Home() {
     
   const onFormChange = (event) => {
     (box) && setBox('')
+    setDisplayErrorModal(false)
+    setDisplaySignInModal(false)
 
     const input = event.target
     if (input.type === "file") {
