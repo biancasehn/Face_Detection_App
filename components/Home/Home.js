@@ -81,7 +81,6 @@ export default function Home() {
     (box) && setBox('')
 
     const input = event.target
-    console.log("event.target.value",event.target.value)
     if (input.type === "file") {
       var file = event.target.files[0];
       var reader = new FileReader();

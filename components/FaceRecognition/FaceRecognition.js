@@ -1,7 +1,7 @@
 import styles from './FaceRecognition.module.css'
 
 export default function FaceRecognition({pic, box}) {
-    if ((pic == '') || ((pic.slice(-4) !== ".jpg") && (pic.substring(0,15) !== "data:image/jpeg"))) {
+    if ((pic == '') || ((pic.substring(0,6) !== "https:") && (pic.substring(0,15) !== "data:image/jpeg"))) {
         return (
             <div />
         )
@@ -13,7 +13,6 @@ export default function FaceRecognition({pic, box}) {
                             src={pic}
                             alt="face"
                             width={"500px"}
-                            height={"auto"}
                         />           
                         {box 
                         ? box.map(face => (
