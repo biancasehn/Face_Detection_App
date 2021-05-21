@@ -42,8 +42,8 @@
   left: -20px;
 
   border-left: 10px solid transparent;
-  border-right: 10px solid rgba(0,0,0,.4);
-  border-top: 10px solid rgba(0,0,0,.4);
+  border-right: 10px solid rgba(126, 121, 121, 0.5);
+  border-top: 10px solid rgba(126, 121, 121, 0.5);
   border-bottom: 10px solid transparent;
 }
 
@@ -121,6 +121,6 @@
 @media(max-width: 536px) {
   .animateScaleUp{
     left: 130px;
-    top: 50px;
+    top: 70px;
   }
 }
