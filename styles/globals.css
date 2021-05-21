@@ -1,17 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
 html,
 body {
   overflow-x: hidden;
   max-width: 100%;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
   cursor: pointer;
+  color: var(--lightText);
+
 }
 
 * {
@@ -19,7 +21,7 @@ a {
 }
 
 .warning {
-  color: red;
+  color: var(--warning);
   display: flex;
   max-width: inherit;
   font-size: .8em;
@@ -27,31 +29,36 @@ a {
 
 button {
   font-weight: 600;
+  color: var(--darkText);
   border-radius: 10px;
-  border: 1px solid rgb(204, 203, 203);
+  border: 1px solid var(--border);
   padding: 10px;
 
   box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
-  background: rgb(247, 198, 206);
+  background: var(--button);
 
   cursor: pointer;
 }
 
 p.button {
   font-weight: 600;
+  color: var(--lightText);
   border-radius: 10px;
-  border: 1px solid rgb(204, 203, 203);
+  border: 1px solid var(--border);
   padding: 10px;
   
   box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
-  background: rgb(247, 198, 206);
+  background: var(--button);
 
   cursor: pointer;
 }
 
 :root {
-  --nav: pink;
-  --button: rgb(247, 198, 206);
-  --blueDetail: rgba(93, 203, 247, 0.2);
-  --darkText: #212529;
+  --nav: #26547C;
+  --button: hsl(292, 60%, 81%, 0.8);
+  --darkText: #2A324B;
+  --lightText: #fff;
+  --warning: #e20707cc;
+  --border: #cccbcb;
+  --inputBackground: hsl(163, 66%, 75%, 0.5);
 }

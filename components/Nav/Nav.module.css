@@ -3,7 +3,7 @@
     font-size: large;
     width: 100vw;
     height: 10vh;
-    background: pink;
+    background: var(--nav);
     padding: 1em 2em 1em 2em;
 
     display: flex;
@@ -14,7 +14,7 @@
 ;}
 
 .signInButton {
-    color: var(--darkText)
+    color: var(--lightText);
 }
 
 @media(max-width: 535px) {

@@ -31,6 +31,4 @@ export default function FaceRecognition({pic, box}) {
                 </div>
             )
         }
-            
-        
 }

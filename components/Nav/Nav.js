@@ -8,19 +8,17 @@ export default function Nav() {
     const [session] = useSession()
     const router = useRouter()
     return(
-            <div className={styles.container}>
-                <div>
-                    <Logo/>
-                </div>
-                
-                { router.pathname === '/' ?
+        <div className={styles.container}>
+            <div>
+                <Logo/>
+            </div>
+            { 
+                router.pathname === '/' ?
                     session ? 
-                    <a onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/signin` })}>Sign Out</a>
+                        <a onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/signin` })}>Sign Out</a>
                     : <Link href="/signin" > Sign in </Link>
-                    :
-                    <Link href='/'>Home</Link>
-                }   
-                
-            </div>      
+                : <Link href='/'>Home</Link>
+            }      
+        </div>      
         )
 }

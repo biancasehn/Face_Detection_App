@@ -16,9 +16,8 @@ export default function Home() {
   const [pic, setPic] = useState('')
   const [box, setBox] = useState ('')
   const [entries, setEntries] = useState(0)
-  const [displaySignInModal, setDisplaySignInModal] = useState(false)
   const [displayErrorModal, setDisplayErrorModal] = useState(false)
-
+  const [facesDetected, setFacesDetected] = useState(0)
 
   useEffect(() => {
     (session) &&
@@ -72,6 +71,7 @@ export default function Home() {
       }
       output.push(calc)
     })
+    setFacesDetected(Number(output.length))
     return output;
   }
 
@@ -82,7 +82,7 @@ export default function Home() {
   const onFormChange = (event) => {
     (box) && setBox('')
     setDisplayErrorModal(false)
-    setDisplaySignInModal(false)
+    setFacesDetected(0)
 
     const input = event.target
     if (input.type === "file") {
@@ -122,7 +122,6 @@ export default function Home() {
         if (boxData.outputs[0].data.regions) {
           (session) && fetchEntries()
           displayBox(boxCalculation(boxData))
-          setDisplaySignInModal(true)
         } else {
           setDisplayErrorModal(true)
         }
@@ -131,30 +130,40 @@ export default function Home() {
   }
   return (
     <div className={styles.main}>
-      { (displaySignInModal) ? 
-        <div className={styles.signInModal}>
-          <Link href={"/signin"}><div className={styles.animateLeft}>
-            Sign in to keep track of your entries!
-          </div></Link>
+      { (facesDetected !== 0) ? 
+        <div className={styles.faceDetectedModal}>
+          <div className={styles.animateLeft}>
+            <p>{facesDetected} face(s) detected successfully</p>
+          </div>
         </div>
         : <div />
       }
 
       { (displayErrorModal) ? 
         <div className={styles.errorModal}>
-          <p className={styles.animateLeft}>No faces detected :(</p>
+          <div className={styles.animateLeft}>
+            <p>No faces detected</p>
+          </div>
         </div>
         : <div />
       }
-
-      <div>
-        { (session) ?
-        <EntriesCount userName={session.accessToken.name}
-                      entries={entries} />
-        : <div></div>
-        }
-        <div className={styles.callToAction}><h1>Let's detect faces in your pictures!</h1></div>
+      
+      <div className={styles.animateScaleUp}>
+        <div className={styles.userInfo}>
+          { (session) ?
+            <div>
+              <EntriesCount userName={session.accessToken.name}
+                          entries={entries} />
+            </div>
+          : <Link href={"/signin"}>
+              <h3 style={{cursor:"pointer"}}>
+              Sign in to keep track of your entries!
+              </h3>
+            </Link>
+          }
+        </div>
       </div>
+      <div className={styles.callToAction}><h1>Let's detect faces in your pictures!</h1></div>
       <Input onChange={onFormChange} onSubmit={handlePictureSubmit} />
       <FaceRecognition pic={pic} box={box} />
       <br />

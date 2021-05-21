@@ -27,8 +27,7 @@ export default function Logo() {
                     width={65}
                     height={65}
                     />
-                </div>
-                
+                </div>        
             </Tilt>
 
     )

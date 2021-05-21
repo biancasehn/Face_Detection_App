@@ -1,15 +1,61 @@
 .main {
   max-width: 90%;
-  margin-top: 4em;
+  margin-top: 3em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.callToAction {
+  margin-top: 3.5rem;
+  font-size: .9em;
+}
+
+@media(max-width: 769px) {
+  .callToAction {
+    margin-top: 3rem;
+  }
+}
+
 @media (max-width:426px) {
   .callToAction {
-    font-size: .8em;
+    font-size: .7em;
+    margin-top: 3rem;
+  }
+}
+
+.userInfo {  
+  font-size: .8em;
+  padding: .3em .7em;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.6);
+  border-radius:20px;
+  margin-right: 10px;
+}
+
+.userInfo:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 16px;
+  left: -20px;
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid rgba(0,0,0,.4);
+  border-top: 10px solid rgba(0,0,0,.4);
+  border-bottom: 10px solid transparent;
+}
+
+@media(max-width: 769px) {
+  .userInfo{
+      padding: .3em .6em;
+  }
+}
+
+@media(max-width: 536px) {
+  .userInfo{
+      font-size: .7em;
   }
 }
 
@@ -23,11 +69,11 @@
   box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
 
   padding: .4em 3em;
-  background-color: rgba(226, 7, 7, 0.8);
-  color: #fff;
+  background-color: var(--warning);
+  color: var(--lightText);
 }
 
-.signInModal {
+.faceDetectedModal {
   position: fixed;
   bottom: 1em;
   right: 0;
@@ -39,7 +85,7 @@
 
   max-width: 60%;
   padding: .8em;
-  background-color: rgba(216, 211, 211, 0.7);
+  background-color: hsl(151, 69%, 26%, 0.5);
 }
 
 @keyframes left {
@@ -57,4 +103,24 @@
   transform: translateX(35px);
   opacity: 0;
   animation: left 350ms forwards;
+}
+
+@keyframes scaleUp {
+  0% {transform: scale(0)};
+  50% {transform: scale(.5)};
+  100% {transform: transition(1)};
+
+}
+.animateScaleUp {
+  position:absolute;
+  left: 150px;
+  top: 65px;
+  animation: scaleUp 400ms;
+}
+
+@media(max-width: 536px) {
+  .animateScaleUp{
+    left: 130px;
+    top: 50px;
+  }
 }
