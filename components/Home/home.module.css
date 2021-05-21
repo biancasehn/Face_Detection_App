@@ -68,7 +68,7 @@
   border-radius: 10px 0px 0px 10px;
   box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
 
-  padding: .4em 3em;
+  padding: .1em .5em;
   background-color: var(--warning);
   color: var(--lightText);
 }
@@ -84,7 +84,7 @@
   cursor: pointer;
 
   max-width: 60%;
-  padding: .8em;
+  padding: .1em .5em;
   background-color: hsl(151, 69%, 26%, 0.5);
 }
 

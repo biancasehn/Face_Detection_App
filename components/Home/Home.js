@@ -133,7 +133,7 @@ export default function Home() {
       { (facesDetected !== 0) ? 
         <div className={styles.faceDetectedModal}>
           <div className={styles.animateLeft}>
-            <p>{facesDetected} face(s) detected successfully</p>
+            <p onClick={()=> setFacesDetected(0)}>{facesDetected} face(s) detected successfully</p>
           </div>
         </div>
         : <div />
@@ -142,7 +142,7 @@ export default function Home() {
       { (displayErrorModal) ? 
         <div className={styles.errorModal}>
           <div className={styles.animateLeft}>
-            <p>No faces detected</p>
+            <p onClick={()=> setDisplayErrorModal(false)}>No faces detected</p>
           </div>
         </div>
         : <div />
