@@ -22,6 +22,7 @@ a {
 
 .warning {
   color: var(--warning);
+  font-weight: bold;
   display: flex;
   max-width: inherit;
   font-size: .8em;
