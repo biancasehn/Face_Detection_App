@@ -34,7 +34,7 @@ button {
   border: 1px solid var(--border);
   padding: 10px;
 
-  box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
+  box-shadow: 2px 2px 2px -2px #0000004d;
   background: var(--button);
 
   cursor: pointer;
@@ -46,8 +46,8 @@ p.button {
   border-radius: 10px;
   border: 1px solid var(--border);
   padding: 10px;
-  
-  box-shadow: 2px 2px 2px -2px rgba(0,0,0,.3);
+
+  box-shadow: 2px 2px 2px -2px #0000004d;
   background: var(--button);
 
   cursor: pointer;
@@ -55,10 +55,11 @@ p.button {
 
 :root {
   --nav: #26547C;
-  --button: hsl(292, 60%, 81%, 0.8);
+  --button: #e4b1eccc;
   --darkText: #2A324B;
   --lightText: #fff;
   --warning: #e20707cc;
+  --success: #05c267;
   --border: #cccbcb;
-  --inputBackground: hsl(163, 66%, 75%, 0.5);
+  --inputBackground: #95e9d180;
 }
